@@ -7,6 +7,7 @@ import { Button, CircularProgress } from "@material-ui/core";
 import Backdrop from "../../Components/BackDrop/Backdrop";
 import * as actions from "../../Store/actions/index";
 import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
 
 class HomePage extends Component {
     state = {
@@ -36,10 +37,10 @@ class HomePage extends Component {
     addEventHandler = (event) => {
         event.preventDefault();
         this.setState({ showAddModal: true });
-        this.props.resetWordAdded();
     };
     closeBackdrop = () => {
         this.setState({ showAddModal: false, word: " " });
+        this.props.resetWordAdded();
     };
 
     addWordInputHandler = (event) => {
@@ -57,7 +58,15 @@ class HomePage extends Component {
         }
     };
 
+    goToWord= (key)=>{
+        this.props.history.push(`/page/${key}`)
+    }
+    
+
     render() {
+        if (this.props.word.wordAdded) {
+            this.closeBackdrop();
+        }
         const ButtonSetStyle = {
             fontFamily: "Roboto",
             fontStyle: "normal",
@@ -145,20 +154,27 @@ class HomePage extends Component {
                         <h5>Word List</h5>
                     </div>
                     <div className={classes.AllResults}>
-                        <div>
+                        <div className={classes.ResultsContainer}>
                             {this.props.word.wordsList.map((word) => {
                                 return (
-                                    <Button className={classes.ResultsCards}>
-                                        <h1>{word.key}</h1>
-                                        {word.lexicalEntries.map((entry) => {
-                                            return (
-                                                <div>
-                                                    <h4>
-                                                        ({entry.lexicalCategory}){entry.definition}
-                                                    </h4>
-                                                </div>
-                                            );
-                                        })}
+                                    <Button
+                                        key={word.key}
+                                        onClick={(key) => this.goToWord(word.key)}
+                                        style={{ margin: "0px", width: "100%", borderBottom: "2px solid #e9e9ed" }}
+                                        className={classes.ResultButton}
+                                    >
+                                        <div className={classes.ResultsCards}>
+                                            <h1>{word.key.toLowerCase()}</h1>
+                                            {word.lexicalEntries.map((entry) => {
+                                                return (
+                                                    <div key={entry.lexicalCategory}>
+                                                        <h4>
+                                                            ({entry.lexicalCategory}) {entry.definition}
+                                                        </h4>
+                                                    </div>
+                                                );
+                                            })}
+                                        </div>
                                     </Button>
                                 );
                             })}
@@ -195,6 +211,6 @@ const mapDispatchToProps = (dispatch) => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(HomePage);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(HomePage));
 // {!this.props.word.addWordError ? null : <div className={classes.errorDiv}>{this.props.word.addWordError.message}</div>}
 //

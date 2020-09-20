@@ -31,7 +31,6 @@ const addWordFail = (state, action) => {
 };
 
 const resetAdded = (state, action) => {
-    console.log("***");
     return updateObject(state, {
         wordAdded: false,
     });

@@ -20,7 +20,7 @@
 
 .HomePage .Search .SearchBar {
     display: block;
-    width: 100% ; 
+    width: 100%;
     color: white;
     height: 2.5rem;
     display: flex;
@@ -32,7 +32,6 @@
     font-size: 1.4rem;
     line-height: 22px;
     outline: none;
-
 }
 
 input:focus::placeholder {
@@ -47,7 +46,6 @@ input:focus::placeholder {
     width: 3rem;
     padding-bottom: 0.4rem;
     cursor: pointer;
-
 }
 .HomePage .Results {
     width: 100%;
@@ -75,15 +73,14 @@ input:focus::placeholder {
     line-height: 18px;
     color: rgba(71, 70, 70, 0.89);
 }
-.AllResults{
+.AllResults {
     width: 100%;
     height: 100%;
+    
     overflow-y: auto;
-
-
 }
 
-.AllResults > div{
+.AllResults > div {
     margin-bottom: 3rem !important;
 }
 
@@ -98,11 +95,10 @@ input:focus::placeholder {
 
 .AllResults::-webkit-scrollbar-thumb {
     border-radius: 8px;
-    background-color:#910976;
+    background-color: #910976;
 }
 
-
-.temp{
+.temp {
     height: 300rem;
     width: 20%;
     background-color: green;
@@ -116,7 +112,6 @@ input:focus::placeholder {
     border-radius: 50%;
     background: rgba(196, 196, 196, 0.21);
     cursor: pointer;
-
 }
 .Results .AddBubble .Add {
     padding: 0;
@@ -133,24 +128,24 @@ input:focus::placeholder {
     display: flex;
 }
 
-
 .AddForm {
-    position:fixed;
+    position: fixed;
     z-index: 500;
     opacity: 0;
-    top:30%;
-    left:0;
+    top: 30%;
+    left: 0;
     right: 0;
     margin-right: auto;
     margin-left: auto;
     background-color: white;
-    width: 281px;
-    height: 201px;
+    width: 300px;
+    height: auto;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    padding: 1.2rem;
+    padding: 1rem;
     transition: all 0.3s ease-out;
+    box-sizing: border-box;
 }
 
 .AddForm h1 {
@@ -199,49 +194,112 @@ input:focus::placeholder {
     line-height: 21px;
     color: #800080;
 }
-.errorDiv{
-    position:fixed;
+.errorDiv {
+    position: fixed;
     z-index: 200;
     bottom: 0;
     left: 0;
     width: 100%;
     height: 3rem;
-    background-color:rgb(37, 37, 37);
+    background-color: rgb(37, 37, 37);
     color: white;
     display: flex;
     align-items: center;
-    padding-left:1rem ;
+    padding-left: 1rem;
     padding-right: 1rem;
 }
+
+.ResultsContainer{
+    width: 100%;
+
+}
+
+.ResultButton{
+    border-bottom: 2px solid #e9e9ed;
+
+}
+.ResultsCards {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content:flex-start;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    padding-left: 0.7rem;
+    padding-right: 0.7rem;
+
+}
+
+.ResultsCards h1 {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    margin: 0px;
+    padding: 0px;
+    font-family: "Roboto";
+    font-weight: 500;
+    text-transform: lowercase;
+    margin-bottom: 0.8rem;
+    font-size: 24px;
+    line-height: 18px;
+    color: rgb(74, 74, 74);
+}
+
+.ResultsCards div {
+    display: flex;
+}
+
+.ResultsCards div h4 {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    margin: 0px;
+    padding: 0px;
+    font-family: "Kumbh Sans", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 14px;
+    line-height: 23px;
+    color: rgba(71, 70, 70, 0.89);
+    text-align: left;
+    margin-top: 0.4rem;
+    margin-bottom: 0.4rem;
+    text-transform: lowercase;
+    font-style: oblique;
+
+
+}
+
+
 @media (min-width: 600px) {
     .HomePage {
-       width: 80%;
-       margin-left: auto;
-       margin-right: auto;
+        width: 80%;
+        margin-left: auto;
+        margin-right: auto;
     }
- }
+}
 
-
- @media (min-width: 900px) {
+@media (min-width: 900px) {
     .HomePage {
-       width: 70%;
-       margin-left: auto;
-       margin-right: auto;
+        width: 70%;
+        margin-left: auto;
+        margin-right: auto;
     }
- }
+}
 
-
-
- @media (min-width: 1100px) {
+@media (min-width: 1100px) {
     .HomePage {
-       width: 65%;
-       margin-left: auto;
-       margin-right: auto;
+        width: 65%;
+        margin-left: auto;
+        margin-right: auto;
     }
- }
+}
 
- @media(max-height:230px){
-     .AddBubble{
-         display:none;
-     }
- }
+@media (max-height: 230px) {
+    .AddBubble {
+        display: none;
+    }
+}

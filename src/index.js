@@ -6,9 +6,10 @@ import * as serviceWorker from "./serviceWorker";
 import { combineReducers, createStore, applyMiddleware, compose } from "redux";
 import { Provider } from "react-redux";
 import thunk from "redux-thunk";
-import wordReducer from "./Store/reducer/word"
+import wordReducer from "./Store/reducer/word";
+import { BrowserRouter } from "react-router-dom";
 
-const composeEnhancers = process.env.NODE_ENV === 'development' ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ :null||compose;
+const composeEnhancers = process.env.NODE_ENV === "development" ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ : null || compose;
 // const composeEnhancer = process.env.NODE_ENV
 const rootReducer = combineReducers({
     word: wordReducer,
@@ -18,7 +19,9 @@ const store = createStore(rootReducer, composeEnhancers(applyMiddleware(thunk)))
 
 const app = (
     <Provider store={store}>
-        <App />
+        <BrowserRouter>
+            <App />
+        </BrowserRouter>
     </Provider>
 );
 

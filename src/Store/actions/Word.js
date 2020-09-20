@@ -43,7 +43,6 @@ export const fetchWordFail = (error) => {
 };
 
 export const resetWordAdded = ()=>{
-    console.log("reser")
     return {
         type: actionTypes.RESET_ADDED,
     };
@@ -51,7 +50,7 @@ export const resetWordAdded = ()=>{
 export const addWord = (word) => {
     return (dispatch) => {
         dispatch(addWordStart());
-        let url = `http://localhost:5000/graphql/addWord`;
+        let url = `https://dictionary-my.herokuapp.com/graphql/addWord`;
         Axios.post(url, {
             query: `mutation{
                 addWord(userInput:{word:"${word}"}){
@@ -70,7 +69,6 @@ export const addWord = (word) => {
                 dispatch(addWordSuccess());
             })
             .catch((err) => {
-                // console.log(err)
                 dispatch(addWordFail(err.response.data.errors[0]));
             });
     };
@@ -78,10 +76,9 @@ export const addWord = (word) => {
 
 
 export const fetchWord = () => {
-console.log("*************///*/*")
     return (dispatch) => {
         dispatch(fetchWordStart());
-        let url = `http://localhost:5000/graphql/getAllAddedWords`;
+        let url = `https://dictionary-my.herokuapp.com/graphql/getAllAddedWords`;
         Axios.post(url, {
             query: `query{
                 getAllAddedWords{
@@ -102,8 +99,11 @@ console.log("*************///*/*")
                 dispatch(fetchWordSuccess(response.data.data.getAllAddedWords.data));
             })
             .catch((err) => {
-                // console.log(err.response.data.errors[0])
-                dispatch(fetchWordFail(err.response.data.errors[0]));
+                let error = null;
+                if(err.response.data){
+                    error=err.response.data.errors[0]
+                }
+                dispatch(fetchWordFail(error));
             });
     };
 
