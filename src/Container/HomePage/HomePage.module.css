@@ -1,0 +1,247 @@
+.HomePage {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    width: 100%;
+}
+
+.HomePage .Search {
+    padding: 0;
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+    box-sizing: border-box;
+    width: 100%;
+    height: 3.8rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    color: white;
+}
+
+.HomePage .Search .SearchBar {
+    display: block;
+    width: 100% ; 
+    color: white;
+    height: 2.5rem;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    font-family: "Kumbh Sans", sans-serif;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 1.4rem;
+    line-height: 22px;
+    outline: none;
+
+}
+
+input:focus::placeholder {
+    color: transparent;
+}
+
+.Icon {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    height: 100%;
+    width: 3rem;
+    padding-bottom: 0.4rem;
+    cursor: pointer;
+
+}
+.HomePage .Results {
+    width: 100%;
+    flex-grow: 1;
+    background: #ffffff;
+    border-radius: 30px 30px 0px 0px;
+    overflow: hidden;
+    position: relative;
+}
+
+.ResultsTitle {
+    height: 4rem;
+    border-bottom: 2px solid #e9e9ed;
+    display: flex;
+    padding-bottom: 0.8rem;
+    padding-left: 1.5rem;
+    box-sizing: border-box;
+}
+
+.ResultsTitle h5 {
+    font-family: "Kumbh Sans", sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 20px;
+    line-height: 18px;
+    color: rgba(71, 70, 70, 0.89);
+}
+.AllResults{
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+
+
+}
+
+.AllResults > div{
+    margin-bottom: 3rem !important;
+}
+
+.AllResults::-webkit-scrollbar-track {
+    border-radius: 10px;
+    background-color: #f5f5f5;
+}
+.AllResults::-webkit-scrollbar {
+    width: 10px;
+    background-color: #f5f5f5;
+}
+
+.AllResults::-webkit-scrollbar-thumb {
+    border-radius: 8px;
+    background-color:#910976;
+}
+
+
+.temp{
+    height: 300rem;
+    width: 20%;
+    background-color: green;
+}
+
+.AddBubble {
+    position: absolute;
+    bottom: 1rem;
+    right: 1rem;
+    z-index: 90;
+    border-radius: 50%;
+    background: rgba(196, 196, 196, 0.21);
+    cursor: pointer;
+
+}
+.Results .AddBubble .Add {
+    padding: 0;
+    margin: 0;
+    background-color: #5d1b48;
+    border-radius: 50%;
+    width: 5rem;
+    height: 5rem;
+    border: none;
+    color: white;
+}
+
+.Results .AddBubble .Add .AddButton {
+    display: flex;
+}
+
+
+.AddForm {
+    position:fixed;
+    z-index: 500;
+    opacity: 0;
+    top:30%;
+    left:0;
+    right: 0;
+    margin-right: auto;
+    margin-left: auto;
+    background-color: white;
+    width: 281px;
+    height: 201px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1.2rem;
+    transition: all 0.3s ease-out;
+}
+
+.AddForm h1 {
+    font-family: "Roboto";
+    font-style: normal;
+    font-weight: 500;
+    font-size: 22px;
+    line-height: 20px;
+    color: #000000;
+}
+.AddForm h2 {
+    font-family: "Roboto";
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 16px;
+    color: #800080;
+}
+
+.AddNewInput {
+    border: none;
+    outline: none;
+    width: 99%;
+    border-bottom: 2px solid #5d1049;
+    font-family: "Kumbh Sans", sans-serif;
+    transform: rotate(0.22deg);
+    margin-top: 0.8rem;
+    font-size: 1.2rem;
+}
+
+.AddButtonSet {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-top: 2rem;
+    height: 100%;
+}
+
+.ButtonSet {
+    font-family: "Roboto";
+    font-style: normal;
+    font-weight: normal;
+    margin-left: 1rem !important ;
+    font-size: 17px !important;
+    line-height: 21px;
+    color: #800080;
+}
+.errorDiv{
+    position:fixed;
+    z-index: 200;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 3rem;
+    background-color:rgb(37, 37, 37);
+    color: white;
+    display: flex;
+    align-items: center;
+    padding-left:1rem ;
+    padding-right: 1rem;
+}
+@media (min-width: 600px) {
+    .HomePage {
+       width: 80%;
+       margin-left: auto;
+       margin-right: auto;
+    }
+ }
+
+
+ @media (min-width: 900px) {
+    .HomePage {
+       width: 70%;
+       margin-left: auto;
+       margin-right: auto;
+    }
+ }
+
+
+
+ @media (min-width: 1100px) {
+    .HomePage {
+       width: 65%;
+       margin-left: auto;
+       margin-right: auto;
+    }
+ }
+
+ @media(max-height:230px){
+     .AddBubble{
+         display:none;
+     }
+ }
