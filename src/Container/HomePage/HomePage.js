@@ -22,6 +22,7 @@ class HomePage extends Component {
     componentDidMount() {
         this.props.fetchWord();
     }
+
     changeHandler = (event) => {
         event.preventDefault();
         this.setState({ word: event.target.value });
@@ -58,14 +59,14 @@ class HomePage extends Component {
         }
     };
 
-    goToWord= (key)=>{
-        this.props.history.push(`/page/${key}`)
-    }
-    
+    goToWord = (key) => {
+        this.props.history.push(`/page/${key}`);
+    };
 
     render() {
         if (this.props.word.wordAdded) {
             this.closeBackdrop();
+            this.props.fetchWord();
         }
         const ButtonSetStyle = {
             fontFamily: "Roboto",
@@ -145,10 +146,23 @@ class HomePage extends Component {
                 </div>
             );
         }
+        let loading = null;
+        if (this.props.word.fetchWordLoading) {
+            loading = (
+                <div className={classes.LoadingBackdrop}>
+                    <Backdrop show="true" />
+                    <CircularProgress style={{ color: "#5d1b48" }} />
+                </div>
+            );
+        }
 
+        if (this.props.word.wordAdded) {
+            this.closeBackdrop();
+        }
         return (
             <div className={classes.HomePage}>
                 {icon}
+                {loading}
                 <div className={classes.Results}>
                     <div className={classes.ResultsTitle}>
                         <h5>Word List</h5>

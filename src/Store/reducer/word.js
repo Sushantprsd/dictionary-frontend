@@ -37,7 +37,7 @@ const resetAdded = (state, action) => {
 };
 
 const fetchWordStart = (state, action) => {
-    return updateObject(state, { fetchWordError: null, fetchWordLoading: false });
+    return updateObject(state, { fetchWordError: null, fetchWordLoading: true});
 };
 
 const fetchWordSuccess = (state, action) => {

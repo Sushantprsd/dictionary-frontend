@@ -4,6 +4,17 @@
     height: 100vh;
     width: 100%;
 }
+.LoadingBackdrop{
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 500;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
 .HomePage .Search {
     padding: 0;
