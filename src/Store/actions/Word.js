@@ -20,7 +20,6 @@ export const addWordFail = (error) => {
     };
 };
 
-
 export const fetchWordStart = () => {
     return {
         type: actionTypes.WORD_FETCH_START,
@@ -30,8 +29,7 @@ export const fetchWordStart = () => {
 export const fetchWordSuccess = (data) => {
     return {
         type: actionTypes.WORD_FETCH_SUCCESS,
-        data:data
-
+        data: data,
     };
 };
 
@@ -42,11 +40,31 @@ export const fetchWordFail = (error) => {
     };
 };
 
-export const resetWordAdded = ()=>{
+export const fetchSelectedWordStart = () => {
+    return {
+        type: actionTypes.WORD_SELECTED_FETCH_START,
+    };
+};
+
+export const fetchSelectedWordSuccess = (data) => {
+    return {
+        type: actionTypes.WORD_SELECTED_FETCH_SUCCESS,
+        data: data,
+    };
+};
+
+export const fetchSelectedWordFail = (error) => {
+    return {
+        type: actionTypes.WORD_SELECTED_FETCH_FAIL,
+        error: error,
+    };
+};
+
+export const resetWordAdded = () => {
     return {
         type: actionTypes.RESET_ADDED,
     };
-}
+};
 export const addWord = (word) => {
     return (dispatch) => {
         dispatch(addWordStart());
@@ -74,7 +92,6 @@ export const addWord = (word) => {
     };
 };
 
-
 export const fetchWord = () => {
     return (dispatch) => {
         dispatch(fetchWordStart());
@@ -100,11 +117,41 @@ export const fetchWord = () => {
             })
             .catch((err) => {
                 let error = null;
-                if(err.response.data){
-                    error=err.response.data.errors[0]
+                if (err.response.data) {
+                    error = err.response.data.errors[0];
                 }
                 dispatch(fetchWordFail(error));
             });
     };
+};
 
-}
+export const fetchSelectedWord = (key) => {
+    return (dispatch) => {
+        dispatch(fetchSelectedWordStart());
+        let url = `https://dictionary-my.herokuapp.com/graphql/getWords`;
+        Axios.post(url, {
+            query: `query{
+                getWords(key:"${key}"){
+                  data{
+                    _id
+                    key
+                    lexicalEntries{
+                      lexicalCategory
+                      definition
+                    }
+                  }
+                }
+              }`,
+        })
+            .then((response) => {
+                dispatch(fetchSelectedWordSuccess(response.data.data.getWords.data));
+            })
+            .catch((err) => {
+                let error = null;
+                if (err.response) {
+                    error = err.response.data.errors[0];
+                }
+                dispatch(fetchSelectedWordFail(error));
+            });
+    };
+};

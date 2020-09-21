@@ -7,8 +7,10 @@ const initialState = {
     fetchWordLoading: false,
     fetchWordError: null,
     addWordLoading: false,
-    addWordError: "hello",
+    addWordError:null,
     wordAdded: false,
+    fetchWordSelectedLoading: false,
+    error:null
 };
 
 const addWordStart = (state, action) => {
@@ -25,7 +27,7 @@ const addWordSuccess = (state, action) => {
 
 const addWordFail = (state, action) => {
     return updateObject(state, {
-        addWordError: action.error,
+        error: action.error,
         addWordLoading: false,
     });
 };
@@ -33,11 +35,12 @@ const addWordFail = (state, action) => {
 const resetAdded = (state, action) => {
     return updateObject(state, {
         wordAdded: false,
+        error:null
     });
 };
 
 const fetchWordStart = (state, action) => {
-    return updateObject(state, { fetchWordError: null, fetchWordLoading: true});
+    return updateObject(state, { fetchWordError: null, fetchWordLoading: true });
 };
 
 const fetchWordSuccess = (state, action) => {
@@ -51,6 +54,25 @@ const fetchWordSuccess = (state, action) => {
 const fetchWordFail = (state, action) => {
     return updateObject(state, {
         fetchWordLoading: false,
+        fetchWordError: action.error,
+    });
+};
+
+const fetchSelectedWordStart = (state, action) => {
+    return updateObject(state, { fetchWordError: null, fetchSelectedWordLoading: true });
+};
+
+const fetchSelectedWordSuccess = (state, action) => {
+    return updateObject(state, {
+        wordsList: action.data,
+        fetchWordSelectedLoading: false,
+        fetchWordError: null,
+    });
+};
+
+const fetchSelectedWordFail = (state, action) => {
+    return updateObject(state, {
+        fetchSelectedWordLoading: false,
         fetchWordError: action.error,
     });
 };
@@ -71,6 +93,12 @@ const reducer = (state = initialState, action) => {
             return fetchWordSuccess(state, action);
         case actionTypes.WORD_FETCH_FAIL:
             return fetchWordFail(state, action);
+        case actionTypes.WORD_SELECTED_FETCH_START:
+            return fetchSelectedWordStart(state, action);
+        case actionTypes.WORD_SELECTED_FETCH_SUCCESS:
+            return fetchSelectedWordSuccess(state, action);
+        case actionTypes.WORD_SELECTED_FETCH_FAIL:
+            return fetchSelectedWordFail(state, action);
         default:
             return state;
     }

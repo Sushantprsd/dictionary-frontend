@@ -1,1 +1,1 @@
-export { addWord,resetWordAdded,fetchWord } from "./Word.js";
+export { addWord,resetWordAdded,fetchWord,fetchSelectedWord } from "./Word.js";

@@ -67,12 +67,14 @@ export class WordPage extends Component {
                         {this.state.word.lexicalEntries.map((entry) => {
                             return (
                                 <div key={entry.lexicalCategory} className={classes.Category}>
-                                        <h1>{entry.lexicalCategory}</h1>
-                                        {entry.origin !== "NA" ? <h2>Origin : {entry.origin}</h2> : null}
+                                    <h1>{entry.lexicalCategory}</h1>
+                                    {entry.origin !== "NA" ? <h2>Origin : {entry.origin}</h2> : null}
                                     {entry.definition !== "NA" ? <h3>{entry.definition}</h3> : null}
-                                    {entry.example !== "NA" ? <ul><li>{entry.example}</li></ul> : null}
-                                    
-
+                                    {entry.example !== "NA" ? (
+                                        <ul>
+                                            <li>{entry.example}</li>
+                                        </ul>
+                                    ) : null}
                                 </div>
                             );
                         })}

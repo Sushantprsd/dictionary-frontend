@@ -25,7 +25,10 @@ class HomePage extends Component {
 
     changeHandler = (event) => {
         event.preventDefault();
-        this.setState({ word: event.target.value });
+
+        this.setState({ word: event.target.value.trim(" ") }, () => {
+            this.props.fetchSelectedWord(this.state.word);
+        });
     };
     inputFocusHandler = () => {
         let newInputFocused = !this.state.inputFocused;
@@ -53,10 +56,8 @@ class HomePage extends Component {
     };
 
     addWord = () => {
-        if (this.state.wordNotValid) {
-        } else {
+   
             this.props.addWord(this.state.word);
-        }
     };
 
     goToWord = (key) => {
@@ -129,6 +130,7 @@ class HomePage extends Component {
                             onChange={(event) => this.addWordInputHandler(event)}
                         />
                         <div className={classes.AddButtonSet}>
+                            {this.props.word.error?<span className={classes.ErrorSpan}>{this.props.word.error.message}</span>:null}
                             <Button style={ButtonSetStyle} onClick={this.closeBackdrop}>
                                 Cancel
                             </Button>
@@ -137,7 +139,7 @@ class HomePage extends Component {
                                     <CircularProgress style={{ color: "#5d1b48" }} />
                                 </Button>
                             ) : (
-                                <Button style={ButtonSetStyle} onClick={this.addWord}>
+                                <Button style={ButtonSetStyle}  onClick={this.addWord}>
                                     Add
                                 </Button>
                             )}
@@ -146,6 +148,19 @@ class HomePage extends Component {
                 </div>
             );
         }
+        // let dialogueBox = (
+        //     <div
+        //         className={classes.Modal}
+        //         // style={{
+        //         //     transform: this.props.word.wordAdded ? "translateY(0)" : "translateY(-100vh)",
+        //         //     opacity: this.props.word.wordAdded ? "1" : "0",
+        //         // }}
+        //     >
+            
+        //         {this.props.word.wordAdded?<h1> Word Added </h1>:null}
+
+        //     </div>
+        // );
         let loading = null;
         if (this.props.word.fetchWordLoading) {
             loading = (
@@ -204,7 +219,6 @@ class HomePage extends Component {
                         </Button>
                     </div>
                 </div>
-
                 {addModal}
             </div>
         );
@@ -222,6 +236,7 @@ const mapDispatchToProps = (dispatch) => {
         addWord: (word) => dispatch(actions.addWord(word)),
         resetWordAdded: () => dispatch(actions.resetWordAdded()),
         fetchWord: () => dispatch(actions.fetchWord()),
+        fetchSelectedWord: (key) => dispatch(actions.fetchSelectedWord(key)),
     };
 };
 
