@@ -4,7 +4,7 @@
     height: 100vh;
     width: 100%;
 }
-.LoadingBackdrop{
+.LoadingBackdrop {
     position: fixed;
     top: 0;
     left: 0;
@@ -57,6 +57,7 @@ input:focus::placeholder {
     width: 3rem;
     padding-bottom: 0.4rem;
     cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
 }
 .HomePage .Results {
     width: 100%;
@@ -87,7 +88,7 @@ input:focus::placeholder {
 .AllResults {
     width: 100%;
     height: 100%;
-    
+
     overflow-y: auto;
 }
 
@@ -115,6 +116,14 @@ input:focus::placeholder {
     background-color: green;
 }
 
+input,
+textarea,
+button,
+select,
+a span {
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
 .AddBubble {
     position: absolute;
     bottom: 1rem;
@@ -123,6 +132,7 @@ input:focus::placeholder {
     border-radius: 50%;
     background: rgba(196, 196, 196, 0.21);
     cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
 }
 .Results .AddBubble .Add {
     padding: 0;
@@ -220,14 +230,12 @@ input:focus::placeholder {
     padding-right: 1rem;
 }
 
-.ResultsContainer{
+.ResultsContainer {
     width: 100%;
-
 }
 
-.ResultButton{
+.ResultButton {
     border-bottom: 2px solid #e9e9ed;
-
 }
 .ResultsCards {
     height: 100%;
@@ -235,12 +243,11 @@ input:focus::placeholder {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    justify-content:flex-start;
+    justify-content: flex-start;
     padding-top: 1rem;
     padding-bottom: 1rem;
     padding-left: 0.7rem;
     padding-right: 0.7rem;
-
 }
 
 .ResultsCards h1 {
@@ -280,13 +287,11 @@ input:focus::placeholder {
     margin-bottom: 0.4rem;
     text-transform: lowercase;
     font-style: oblique;
-
-
 }
 
-.Modal{
-    height: 3rem;
-    background-color: red;
+.Modal {
+    height: 2.5rem;
+    background-color:rgb(42, 42, 42);
     position: fixed;
     bottom: 0;
     left: 0;
@@ -294,12 +299,25 @@ input:focus::placeholder {
     box-sizing: border-box;
     transition: all 0.3s ease-out;
 }
+.Modal h1 {
+    font-family: "Kumbh Sans", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 15px;
+    line-height: 20px;
+    color: white;
+    text-align: left;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
 
-.AddButtonSet .ErrorSpan{
-    color:red;
+.AddButtonSet .ErrorSpan {
+    width: 100%;
+    text-align: left;
+    color: red;
     font-size: 12px;
     text-align: left;
-
+    text-transform: lowercase;
 }
 
 @media (min-width: 600px) {

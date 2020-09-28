@@ -17,7 +17,7 @@ class HomePage extends Component {
         showBackdrop: true,
         showAddModal: false,
         wordNotValid: true,
-        dialogueBox: null,
+        showAddedDialogueBox: false,
     };
     componentDidMount() {
         this.props.fetchWord();
@@ -43,7 +43,7 @@ class HomePage extends Component {
         this.setState({ showAddModal: true });
     };
     closeBackdrop = () => {
-        this.setState({ showAddModal: false, word: " " });
+        this.setState({ showAddModal: false, word: "" });
         this.props.resetWordAdded();
     };
 
@@ -56,18 +56,26 @@ class HomePage extends Component {
     };
 
     addWord = () => {
-   
-            this.props.addWord(this.state.word);
+        this.props.addWord(this.state.word);
     };
 
     goToWord = (key) => {
         this.props.history.push(`/page/${key}`);
     };
 
+    showDialogueBox = () => {
+        this.setState({ showAddedDialogueBox: true }, () => {
+            setTimeout(() => {
+                this.setState({ showAddedDialogueBox: false });
+            }, 1700);
+        });
+    };
+
     render() {
         if (this.props.word.wordAdded) {
             this.closeBackdrop();
             this.props.fetchWord();
+            this.showDialogueBox();
         }
         const ButtonSetStyle = {
             fontFamily: "Roboto",
@@ -78,6 +86,7 @@ class HomePage extends Component {
             lineHeight: "21px",
             color: "#800080",
         };
+
         let icon = (
             <div className={classes.Search}>
                 <TextField
@@ -130,7 +139,9 @@ class HomePage extends Component {
                             onChange={(event) => this.addWordInputHandler(event)}
                         />
                         <div className={classes.AddButtonSet}>
-                            {this.props.word.error?<span className={classes.ErrorSpan}>{this.props.word.error.message}</span>:null}
+                            {this.props.word.error ? (
+                                <span className={classes.ErrorSpan}>{this.props.word.error.message}</span>
+                            ) : null}
                             <Button style={ButtonSetStyle} onClick={this.closeBackdrop}>
                                 Cancel
                             </Button>
@@ -139,7 +150,7 @@ class HomePage extends Component {
                                     <CircularProgress style={{ color: "#5d1b48" }} />
                                 </Button>
                             ) : (
-                                <Button style={ButtonSetStyle}  onClick={this.addWord}>
+                                <Button style={ButtonSetStyle} onClick={this.addWord}>
                                     Add
                                 </Button>
                             )}
@@ -148,19 +159,17 @@ class HomePage extends Component {
                 </div>
             );
         }
-        // let dialogueBox = (
-        //     <div
-        //         className={classes.Modal}
-        //         // style={{
-        //         //     transform: this.props.word.wordAdded ? "translateY(0)" : "translateY(-100vh)",
-        //         //     opacity: this.props.word.wordAdded ? "1" : "0",
-        //         // }}
-        //     >
-            
-        //         {this.props.word.wordAdded?<h1> Word Added </h1>:null}
-
-        //     </div>
-        // );
+        let dialogueBox = (
+            <div
+                className={classes.Modal}
+                style={{
+                    transform: this.state.showAddedDialogueBox ? "translateY(0)" : "translateY(10vh)",
+                    opacity: this.state.showAddedDialogueBox ? "1" : "1",
+                }}
+            >
+                <h1> Queued Successfully !!! </h1>
+            </div>
+        );
         let loading = null;
         if (this.props.word.fetchWordLoading) {
             loading = (
@@ -220,6 +229,7 @@ class HomePage extends Component {
                     </div>
                 </div>
                 {addModal}
+                {dialogueBox}
             </div>
         );
     }
