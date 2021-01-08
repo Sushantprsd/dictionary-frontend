@@ -4,6 +4,13 @@ A  personalized dictionary app which can be use to add words to the database wit
 
 
 
+Click on the + sign at bottom right cornor to add a new word. The word will be saved in local
+database server created with nodejs using graphql API. 
+
+![3a2009c2-72b1-41b6-840a-b43fc8a40b0c](https://user-images.githubusercontent.com/43819292/104055927-9acf4d80-5215-11eb-9816-c685af0adcd2.jpg)
+
+![54f9bb16-02ea-435c-a81d-e080efc70576](https://user-images.githubusercontent.com/43819292/104056027-c9e5bf00-5215-11eb-8618-6f881435a863.jpg)
+
 
 ## Available Scripts
 
