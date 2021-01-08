@@ -1,4 +1,9 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Overview
+A  personalized dictionary app which can be use to add words to the database with its meaning
+
+
+
 
 ## Available Scripts
 
